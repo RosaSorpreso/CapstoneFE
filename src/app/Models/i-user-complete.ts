@@ -1,3 +1,4 @@
+import { iRole } from "./i-role";
 import { iTravelLight } from "./i-travel-light";
 
 export interface iUserComplete {
@@ -7,5 +8,7 @@ export interface iUserComplete {
   username: string,
   email: string,
   travelsPurchased: iTravelLight[],
-  wishlist: iTravelLight[]
+  wishlist: iTravelLight[],
+  roles?: iRole[],
+  password?: string
 }

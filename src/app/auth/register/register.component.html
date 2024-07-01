@@ -1,0 +1,45 @@
+<div class="container col-xxl-8 px-4 py-5">
+  <div class="row flex-lg-row-reverse align-items-center g-5 py-5 vertical-center">
+    <div class="col-lg-6 text-center">
+      <form class="p-4 p-md-5 border rounded-3 bg-form">
+        <div class="form-floating mb-3">
+          <input [(ngModel)]="registerData.firstName"
+          type="text" class="form-control" id="floatingFirstName" name="firstName">
+          <label for="floatingInput">Nome</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input [(ngModel)]="registerData.lastName"
+          type="text" class="form-control" id="floatingLastName" name="lastName">
+          <label for="floatingInput">Cognome</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input [(ngModel)]="registerData.username"
+          type="text" class="form-control" id="floatingLastName" name="username">
+          <label for="floatingInput">username</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input [(ngModel)]="registerData.email"
+          type="email" class="form-control" id="floatingEmail" name="email">
+          <label for="floatingInput">Email</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input [(ngModel)]="registerData.password"
+          type="password" class="form-control" id="floatingPassword" name="password">
+          <label for="floatingPassword">Scegli una Password</label>
+        </div>
+        <button (click)="signUp()" class="w-100 btn btn-lg btn-primary" type="submit">Registrati</button>
+        <hr class="my-4">
+        <p class="text-body-light mb-0">Sei già un giocatore di
+          <img src="../../../assets/img/epicode_logo.png" class="logo-small">
+          <img class="snap-small" src="../../../assets/img/snap.png">?
+          <a routerLink="/login" class="text-decoration-none text-primary">Accedi!</a> </p>
+      </form>
+    </div>
+    <div class="col-lg-6 d-flex flex-column align-items-center">
+      <img src="../../../assets/img/epicode_logo.png" class="logo">
+      <img class="snap" src="../../../assets/img/snap.png">
+    </div>
+  </div>
+</div>
+
+

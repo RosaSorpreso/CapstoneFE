@@ -1,0 +1,30 @@
+<div class="container col-xxl-8 px-4 py-5 my-5">
+  <div class="row flex-lg-row-reverse align-items-center g-5 py-5 vertical-center">
+    <div class="col-lg-6 text-center">
+      <form class="p-4 p-md-5 border rounded-3 bg-form">
+        <div class="form-floating mb-3">
+          <input [(ngModel)]="login.username"
+          type="text" class="form-control" name="email">
+          <label for="floatingInput">username</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input [(ngModel)]="login.password"
+          type="password" class="form-control" name="password">
+          <label for="floatingPassword">Password</label>
+        </div>
+        <button (click)="signIn()" class="w-100 btn btn-lg btn-primary">Accedi</button>
+        <hr class="my-4">
+        <p class="text-body-light mb-0">Prima volta su
+          <img src="../../../assets/img/epicode_logo.png" class="logo-small">
+          <img class="snap-small" src="../../../assets/img/snap.png">?
+          <a routerLink="/register" class="text-decoration-none text-primary">Registrati!</a> </p>
+      </form>
+    </div>
+    <div class="col-lg-6 d-flex flex-column align-items-center">
+      <img src="../../../assets/img/epicode_logo.png" class="logo">
+      <img class="snap" src="../../../assets/img/snap.png">
+    </div>
+  </div>
+</div>
+
+

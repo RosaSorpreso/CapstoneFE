@@ -1,0 +1,40 @@
+.bg-form {
+  border: 1px solid #ffffff22;
+
+  background-color: #282c34;
+  background: linear-gradient(0deg,
+          rgba(40, 44, 52, 1) 0%,
+          rgba(17, 0, 32, 0.5) 100%);
+          box-shadow: 0 7px 20px 5px #00000088;
+          backdrop-filter: blur(7px);
+          color: white;
+}
+
+.snap {
+  max-width: 100%;
+}
+
+.logo{
+  width: 200px;
+}
+
+.snap-small{
+  width: 45px;
+}
+
+.logo-small{
+  width: 70px;
+}
+
+.container{
+  height: 900px;
+  position: relative;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

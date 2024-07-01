@@ -1,0 +1,25 @@
+
+.logo{
+  width: 200px;
+}
+
+.snap {
+  max-width: 100%;
+}
+
+.container{
+  height: 800px;
+  position: relative;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.epicode{
+  text-shadow: -4px -2px 7px rgba(39, 2, 39, 0.56), 3px 5px 7px rgba(39, 2, 39, 0.56);
+}
