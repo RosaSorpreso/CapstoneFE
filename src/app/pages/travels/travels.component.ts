@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef, inject } from '@angular/core';
 import { iTravelComplete } from '../../Models/i-travel-complete';
 import { TravelService } from '../../services/travel.service';
 import { CategoryService } from '../../services/category.service';
 import { iCategory } from '../../Models/i-category';
 import { ContinentService } from '../../services/continent.service';
 import { iContinent } from '../../Models/i-continent';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-travels',
@@ -12,6 +13,8 @@ import { iContinent } from '../../Models/i-continent';
   styleUrl: './travels.component.scss'
 })
 export class TravelsComponent {
+
+  private modalService = inject(NgbModal);
 
   travels: iTravelComplete[] = []
   categories: iCategory[] = []
@@ -85,6 +88,10 @@ export class TravelsComponent {
     })
   }
 
+  openVerticallyCentered(content: TemplateRef<any>) {
+		this.modalService.open(content, { centered: true });
+	}
+
   getAllTravels(){
     this.travels = []
     this.travelSvc.travels$.subscribe(travels => {
@@ -104,6 +111,10 @@ export class TravelsComponent {
     this.travelSvc.getTravelsByBoolean(type, boolean).subscribe(travels => {
       this.travels = travels
     })
+  }
+
+  deleteTravel(id: number){
+    this.travelSvc.deleteTravel(id).subscribe()
   }
 
 }
