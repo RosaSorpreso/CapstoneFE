@@ -16,7 +16,56 @@ export class TravelsComponent {
   travels: iTravelComplete[] = []
   categories: iCategory[] = []
   continents: iContinent[] = []
-  months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  months = [
+    {
+      name: "january",
+      month: 1
+    },
+    {
+      name: "february",
+      month: 2
+    },
+    {
+      name: "march",
+      month: 3
+    },
+    {
+      name: "april",
+      month: 4
+    },
+    {
+      name: "may",
+      month: 5
+    },
+    {
+      name: "june",
+      month: 6
+    },
+    {
+      name: "july",
+      month: 7
+    },
+    {
+      name: "august",
+      month: 8
+    },
+    {
+      name: "september",
+      month: 9
+    },
+    {
+      name: "october",
+      month: 10
+    },
+    {
+      name: "november",
+      month: 11
+    },
+    {
+      name: "december",
+      month: 12
+    }
+  ]
 
   constructor(
     private travelSvc: TravelService,
