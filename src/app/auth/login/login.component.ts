@@ -23,7 +23,7 @@ export class LoginComponent {
 
       this.authSvc.login(this.login)
       .subscribe(data => {
-        this.router.navigate([''])
+        this.router.navigate(['travels'])
       })
 
     }

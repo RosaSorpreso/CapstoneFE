@@ -1,1 +1,12 @@
-<p>travels works!</p>
+
+<div *ngFor="let travel of travels" class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{travel?.name}}</h5>
+    <p class="card-text">{{travel?.description}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{{travel?.place}}</li>
+    <li class="list-group-item">{{travel?.price}}</li>
+    <li class="list-group-item">{{travel?.category?.name}}</li>
+  </ul>
+</div>
