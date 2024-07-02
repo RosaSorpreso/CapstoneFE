@@ -25,9 +25,7 @@ export class TravelsComponent {
   ){}
 
   ngOnInit(){
-    this.travelSvc.travels$.subscribe(travels => {
-      this.travels = travels
-    })
+    this.getAllTravels()
 
     this.categorySvc.category$.subscribe(categories => {
       this.categories = categories
@@ -35,6 +33,13 @@ export class TravelsComponent {
 
     this.continentSvc.continent$.subscribe(continents => {
       this.continents = continents
+    })
+  }
+
+  getAllTravels(){
+    this.travels = []
+    this.travelSvc.travels$.subscribe(travels => {
+      this.travels = travels
     })
   }
 
