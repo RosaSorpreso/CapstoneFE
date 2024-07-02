@@ -1,12 +1,86 @@
+<div class="container">
 
-<div *ngFor="let travel of travels" class="card">
-  <div class="card-body">
-    <h5 class="card-title">{{travel?.name}}</h5>
-    <p class="card-text">{{travel?.description}}</p>
+  <div ngbDropdown class="d-inline-block">
+    <button type="button" class="btn" id="dropdownBasic1" ngbDropdownToggle>
+      Category
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <button ngbDropdownItem
+      *ngFor="let category of categories"
+      (click)="getTravelsBy('category', category.id)">
+      {{category.name}}
+      </button>
+    </div>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">{{travel?.place}}</li>
-    <li class="list-group-item">{{travel?.price}}</li>
-    <li class="list-group-item">{{travel?.category?.name}}</li>
-  </ul>
+
+  <div ngbDropdown class="d-inline-block">
+    <button type="button" class="btn" id="dropdownBasic1" ngbDropdownToggle>
+      Continent
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <button ngbDropdownItem
+      *ngFor="let continent of continents"
+      (click)="getTravelsBy('continent', continent.id)">
+      {{continent.name}}
+      </button>
+    </div>
+  </div>
+
+  <div ngbDropdown class="d-inline-block">
+    <button type="button" class="btn" id="dropdownBasic1" ngbDropdownToggle>
+      Month
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <button ngbDropdownItem
+      *ngFor="let month of months"
+      (click)="getTravelsBy('month', month)">
+      {{month}}
+      </button>
+    </div>
+  </div>
+
+  <div ngbDropdown class="d-inline-block">
+    <button type="button" class="btn" id="dropdownBasic1" ngbDropdownToggle>
+      Passport
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <button ngbDropdownItem
+      (click)="getTravelsByBoolean('passport', true)">
+      Required
+      </button>
+      <button ngbDropdownItem
+      (click)="getTravelsByBoolean('passport', false)">
+      Not Required
+      </button>
+    </div>
+  </div>
+
+  <div ngbDropdown class="d-inline-block">
+    <button type="button" class="btn" id="dropdownBasic1" ngbDropdownToggle>
+      Available
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <button ngbDropdownItem
+      (click)="getTravelsByBoolean('soldout', false)">
+      Still available
+      </button>
+      <button ngbDropdownItem
+      (click)="getTravelsByBoolean('soldout', true)">
+      Sold out
+      </button>
+    </div>
+  </div>
+
+
+  <div *ngFor="let travel of travels" class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{travel?.name}}</h5>
+      <p class="card-text">{{travel?.description}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">{{travel?.place}}</li>
+      <li class="list-group-item">{{travel?.price}}</li>
+      <li class="list-group-item">{{travel?.category?.name}}</li>
+    </ul>
+  </div>
 </div>
