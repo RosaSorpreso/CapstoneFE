@@ -1,0 +1,70 @@
+<form [formGroup]="travelForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Name:</label>
+    <input formControlName="name" placeholder="Enter name">
+  </div>
+  <div>
+    <label>Description:</label>
+    <textarea formControlName="description" placeholder="Enter description"></textarea>
+  </div>
+  <div>
+    <label>Start Date:</label>
+    <input type="date" formControlName="startDate">
+  </div>
+  <div>
+    <label>End Date:</label>
+    <input type="date" formControlName="endDate">
+  </div>
+  <div>
+    <label>Available Seats:</label>
+    <input type="number" formControlName="availableSeats">
+  </div>
+  <div>
+    <label>Price:</label>
+    <input type="number" formControlName="price" step="0.01">
+  </div>
+  <div>
+    <label>Place:</label>
+    <input formControlName="place" placeholder="Enter place">
+  </div>
+  <div>
+    <label>Continent ID:</label>
+    <input type="number" formControlName="idContinent">
+  </div>
+  <div>
+    <label>Passport Required:</label>
+    <input type="checkbox" formControlName="passportIsRequired">
+  </div>
+  <div>
+    <label>What's Included:</label>
+    <input formControlName="whatsIncluded" placeholder="Enter included item">
+    <button type="button" (click)="addWhatsIncluded()">Add</button>
+    <ul>
+      <li *ngFor="let item of whatsIncludedArray; let i = index">
+        {{ item }}
+        <button type="button" (click)="removeWhatsIncluded(i)">Remove</button>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <label>Itinerary:</label>
+    <input formControlName="itineraryKey" placeholder="Day number">
+    <input formControlName="itineraryValue" placeholder="Itinerary description">
+    <button type="button" (click)="addItinerary()">Add</button>
+    <ul>
+      <li *ngFor="let key of itineraryKeys()">
+        Day {{ key }}: {{ itineraryObject[key] }}
+        <button type="button" (click)="removeItinerary(key)">Remove</button>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <label>Category ID:</label>
+    <input type="number" formControlName="idCategories">
+  </div>
+  <div>
+    <label>Upload Files:</label>
+    <input type="file" (change)="onFilesSelected($event)" multiple>
+  </div>
+  <button type="submit">Submit</button>
+</form>

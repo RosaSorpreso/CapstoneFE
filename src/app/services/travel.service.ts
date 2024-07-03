@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, catchError, map, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
 import { iTravelComplete } from '../Models/i-travel-complete';
+import { iTravelRequest } from '../Models/i-travel-request';
 import { iTravelLight } from '../Models/i-travel-light';
 
 @Injectable({
@@ -38,6 +39,26 @@ export class TravelService {
   getTravelsByBoolean(type: string, boolean: boolean): Observable<iTravelComplete[]>{
     return this.http.get<iTravelComplete[]>(`${environment.travelsUrl}/${type}/${boolean}`)
   }
+
+  addTravel(travel: iTravelRequest, files: File[]): Observable<iTravelComplete> {
+    const formData = new FormData();
+    files.forEach((file, index) => {
+      formData.append('file', file, file.name);
+    });
+    formData.append('travel', JSON.stringify(travel));
+    return this.http.post<iTravelComplete>(`${environment.travelsUrl}/create`, formData)
+      .pipe(
+        tap(newTravel => {
+          const currentTravels = this.travelSubject.getValue();
+          this.travelSubject.next([...currentTravels, newTravel]);
+        }),
+        catchError(error => {
+          console.error('Error adding travel:', error);
+          throw error;
+        })
+      );
+  }
+
 
   deleteTravel(id: number): Observable<iTravelComplete[]> {
     return this.http.delete(`${environment.travelsUrl}/delete/${id}`, { responseType: 'text' })

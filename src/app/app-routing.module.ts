@@ -8,7 +8,8 @@ const routes: Routes = [
   },
   { path: 'travels', loadChildren: () => import('./pages/travels/travels.module').then(m => m.TravelsModule) },
   { path: 'homepage', loadChildren: () => import('./pages/homepage/homepage.module').then(m => m.HomepageModule) },
-  { path: 'user', loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule) }
+  { path: 'user', loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule) },
+  { path: 'create', loadChildren: () => import('./pages/backoffice/create/create.module').then(m => m.CreateModule) }
 ];
 
 @NgModule({
