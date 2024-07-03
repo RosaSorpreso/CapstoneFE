@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
 import { iTravelComplete } from '../Models/i-travel-complete';
@@ -39,18 +39,19 @@ export class TravelService {
     return this.http.get<iTravelComplete[]>(`${environment.travelsUrl}/${type}/${boolean}`)
   }
 
-  deleteTravel(id: number): Observable<void>{
-    return this.http.delete<void>(`${environment.travelsUrl}/delete/${id}`)
-    .pipe(
-      tap(() => {
-        const currentTravels = this.travelSubject.getValue()
-        const updatedTravels = currentTravels.filter(t => t.id != id)
-        this.travelSubject.next(updatedTravels)
-      }),
-      catchError(error => {
-        console.error('Error deleting travel:', error);
-        throw error;
-      })
-    )
+  deleteTravel(id: number): Observable<iTravelComplete[]> {
+    return this.http.delete(`${environment.travelsUrl}/delete/${id}`, { responseType: 'text' })
+      .pipe(
+        tap(() => {
+          const currentTravels = this.travelSubject.getValue();
+          const updatedTravels = currentTravels.filter(t => t.id !== id);
+          this.travelSubject.next(updatedTravels);
+        }),
+        map(() => this.travelSubject.getValue()),
+        catchError(error => {
+          console.error('Error deleting travel:', error);
+          throw error;
+        })
+      );
   }
 }

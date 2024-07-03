@@ -114,7 +114,9 @@ export class TravelsComponent {
   }
 
   deleteTravel(id: number){
-    this.travelSvc.deleteTravel(id).subscribe()
+    this.travelSvc.deleteTravel(id).subscribe(updatedTravels => {
+      this.travels = updatedTravels
+    })
   }
 
 }
