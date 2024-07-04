@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, map, tap } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, catchError, map, tap, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
 import { iTravelComplete } from '../Models/i-travel-complete';
 import { iTravelRequest } from '../Models/i-travel-request';
@@ -32,6 +32,10 @@ export class TravelService {
     )
   }
 
+  getTravelById(id: number): Observable<iTravelComplete>{
+    return this.http.get<iTravelComplete>(`${environment.travelsUrl}/${id}`)
+  }
+
   getTravelsBy(type: string, id: number): Observable<iTravelComplete[]>{
     return this.http.get<iTravelComplete[]>(`${environment.travelsUrl}/${type}/${id}`)
   }
@@ -54,6 +58,24 @@ export class TravelService {
         }),
         catchError(error => {
           console.error('Error adding travel:', error);
+          throw error;
+        })
+      );
+  }
+
+  updateTravel(id: number, travel: iTravelRequest): Observable<iTravelComplete> {
+    return this.http.put<iTravelComplete>(`${environment.travelsUrl}/update/${id}`, travel)
+      .pipe(
+        tap(updatedTravel => {
+          const currentTravels = this.travelSubject.getValue();
+          const index = currentTravels.findIndex(t => t.id === id);
+          if (index !== -1) {
+            currentTravels[index] = updatedTravel;
+          }
+          this.travelSubject.next([...currentTravels]);
+        }),
+        catchError(error => {
+          console.error('Error updating travel:', error);
           throw error;
         })
       );

@@ -1,0 +1,67 @@
+<form [formGroup]="travelForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name</label>
+    <input id="name" formControlName="name" type="text">
+  </div>
+  <div>
+    <label for="description">Description</label>
+    <textarea id="description" formControlName="description"></textarea>
+  </div>
+  <div>
+    <label for="startDate">Start Date</label>
+    <input id="startDate" formControlName="startDate" type="date">
+  </div>
+  <div>
+    <label for="endDate">End Date</label>
+    <input id="endDate" formControlName="endDate" type="date">
+  </div>
+  <div>
+    <label for="availableSeats">Available Seats</label>
+    <input id="availableSeats" formControlName="availableSeats" type="number">
+  </div>
+  <div>
+    <label for="price">Price</label>
+    <input id="price" formControlName="price" type="number">
+  </div>
+  <div>
+    <label for="place">Place</label>
+    <input id="place" formControlName="place" type="text">
+  </div>
+  <div>
+    <label for="idContinent">Continent</label>
+    <input id="idContinent" formControlName="idContinent" type="number">
+  </div>
+  <div>
+    <label for="passportIsRequired">Passport Required</label>
+    <input id="passportIsRequired" formControlName="passportIsRequired" type="checkbox">
+  </div>
+  <div>
+    <label for="idCategories">Category</label>
+    <input id="idCategories" formControlName="idCategories" type="number">
+  </div>
+  <div>
+    <label for="whatsIncluded">What's Included</label>
+    <input id="whatsIncluded" formControlName="whatsIncluded" type="text">
+    <button type="button" (click)="addWhatsIncluded()">Add</button>
+    <ul>
+      <li *ngFor="let item of whatsIncludedArray; let i = index">
+        {{item}} <button type="button" (click)="removeWhatsIncluded(i)">Remove</button>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <label for="itineraryKey">Itinerary Day</label>
+    <input id="itineraryKey" formControlName="itineraryKey" type="number">
+    <label for="itineraryValue">Itinerary Description</label>
+    <input id="itineraryValue" formControlName="itineraryValue" type="text">
+    <button type="button" (click)="addItinerary()">Add</button>
+    <ul>
+      <li *ngFor="let key of itineraryKeys()">
+        Day {{key}}: {{itineraryObject[key]}}
+        <button type="button" (click)="removeItinerary(key)">Remove</button>
+      </li>
+    </ul>
+  </div>
+  <button type="submit">Update Travel</button>
+</form>
+
