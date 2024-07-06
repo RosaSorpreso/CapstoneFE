@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
+import { AdminGuard } from './auth/admin.guard';
 
 const routes: Routes = [
   {
@@ -20,6 +22,7 @@ const routes: Routes = [
     path: 'user',
     loadChildren: () =>
       import('./pages/user/user.module').then((m) => m.UserModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'create',
@@ -27,11 +30,13 @@ const routes: Routes = [
       import('./pages/backoffice/create/create.module').then(
         (m) => m.CreateModule
       ),
+    canActivate: [AdminGuard]
   },
   {
     path: 'edit/:id',
     loadChildren: () =>
       import('./pages/backoffice/edit/edit.module').then((m) => m.EditModule),
+      canActivate: [AdminGuard]
   },
 ];
 

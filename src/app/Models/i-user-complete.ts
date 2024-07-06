@@ -1,4 +1,3 @@
-import { iRole } from "./i-role";
 import { iTravelLight } from "./i-travel-light";
 
 export interface iUserComplete {
