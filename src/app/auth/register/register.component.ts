@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { iUserComplete } from '../../Models/i-user-complete';
 import { AuthService } from '../../services/auth.service';
+import { iUserRegister } from '../../Models/i-user-register';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,13 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-  registerData:Partial<iUserComplete> = {}
+  registerData:iUserRegister = {
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    password: ""
+  }
 
   constructor(
     private authSvc:AuthService,

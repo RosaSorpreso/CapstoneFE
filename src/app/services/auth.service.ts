@@ -6,10 +6,12 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment.development';
 import { iLogin } from '../Models/i-login';
+import { iUserRegistered } from '../Models/i-user-registered';
+import { iUserRegister } from '../Models/i-user-register';
 
 type AccessData = {
   token:string,
-  user:iUserComplete
+  user:iUserRegistered
 }
 
 @Injectable({
@@ -18,7 +20,7 @@ type AccessData = {
 export class AuthService {
   jwtHelper:JwtHelperService = new JwtHelperService()//ci permette di lavorare facilmente con i jwt
 
-  authSubject = new BehaviorSubject<iUserComplete |null>(null);//se nel behavioursubject c'è null significa che l'utente non è loggato, altrimenti conterrà l'oggetto user con tutte le sue info
+  authSubject = new BehaviorSubject<iUserRegistered |null>(null);//se nel behavioursubject c'è null significa che l'utente non è loggato, altrimenti conterrà l'oggetto user con tutte le sue info
 
   user$ = this.authSubject.asObservable()//contiene i dati dell'utente loggato oppure null
   isLoggedIn$ = this.user$.pipe(
@@ -43,7 +45,7 @@ export class AuthService {
   registerUrl:string = environment.registerUrl
   loginUrl:string = environment.loginUrl
 
-  register(newUser:Partial<iUserComplete>):Observable<AccessData>{
+  register(newUser: iUserRegister):Observable<AccessData>{
     return this.http.post<AccessData>(this.registerUrl,newUser)
   }
 

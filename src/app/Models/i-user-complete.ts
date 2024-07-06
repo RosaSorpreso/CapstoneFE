@@ -8,7 +8,5 @@ export interface iUserComplete {
   username: string,
   email: string,
   travelsPurchased: iTravelLight[],
-  wishlist: iTravelLight[],
-  roles?: iRole[],
-  password?: string
+  wishlist: iTravelLight[]
 }
