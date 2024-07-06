@@ -19,10 +19,10 @@ const routes: Routes = [
       import('./pages/travels/travels.module').then((m) => m.TravelsModule),
   },
   {
-    path: 'user',
+    path: 'profile',
     loadChildren: () =>
       import('./pages/user/user.module').then((m) => m.UserModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: 'create',
@@ -30,13 +30,18 @@ const routes: Routes = [
       import('./pages/backoffice/create/create.module').then(
         (m) => m.CreateModule
       ),
-    canActivate: [AdminGuard]
+    canActivate: [AdminGuard],
   },
   {
     path: 'edit/:id',
     loadChildren: () =>
       import('./pages/backoffice/edit/edit.module').then((m) => m.EditModule),
-      canActivate: [AdminGuard]
+    canActivate: [AdminGuard],
+  },
+  {
+    path: 'details/:id',
+    loadChildren: () =>
+      import('./pages/details/details.module').then((m) => m.DetailsModule),
   },
 ];
 

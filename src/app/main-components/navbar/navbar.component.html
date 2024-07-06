@@ -12,6 +12,30 @@
   </ul>
 
   <div class="text-end">
-    <a routerLink="/auth/register" type="button" class="btn btn-warning">Sign-up</a>
+
+    <div *ngIf="user" ngbDropdown class="d-inline-block">
+      <div class="d-block link-dark text-decoration-none" id="dropdownBasic1" ngbDropdownToggle>
+        <i class="bi bi-person-lines-fill"></i>
+      </div>
+      <ul class="text-small shadow" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <li ngbDropdownItem>
+          <a *ngIf="user && user.roles[0].roleType == 'ADMIN'"
+          class="dropdown-item" routerLink="/create">Create</a>
+        </li>
+        <li ngbDropdownItem>
+          <a *ngIf="user && user.roles[0].roleType == 'USER'"
+          class="dropdown-item" routerLink="/">wishlist</a>
+        </li>
+        <li ngbDropdownItem>
+          <a class="dropdown-item" routerLink="/profile">Profile</a>
+        </li>
+        <li><hr class="dropdown-divider"></li>
+        <li ngbDropdownItem>
+          <button *ngIf="user" (click)="logout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+
+    <a *ngIf="!user" routerLink="/auth/register" type="button" class="btn btn-warning">Sign-up</a>
   </div>
 </div>

@@ -76,11 +76,6 @@
     All Travels
   </button>
 
-  <a routerLink="/create"
-  class="btn">
-    add new travel
-  </a>
-
 
   <div *ngFor="let travel of travels" class="card">
     <div class="card-body">
@@ -98,6 +93,9 @@
     </button>
     <a [routerLink]="['/edit',travel.id]" class="btn btn-secondary w-25">
       <i class="bi bi-pencil-square"></i>
+    </a>
+    <a [routerLink]="['/details',travel.id]" class="btn btn-info w-25">
+      <i class="bi bi-info-circle-fill"></i>
     </a>
     <ng-template #content let-modal>
       <div class="modal-header">
