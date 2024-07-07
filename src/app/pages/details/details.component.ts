@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { iTravelComplete } from '../../Models/i-travel-complete';
 import { TravelService } from '../../services/travel.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { iUserRegistered } from '../../Models/i-user-registered';
 
 @Component({
   selector: 'app-details',
@@ -12,14 +14,24 @@ export class DetailsComponent {
 
   travel: iTravelComplete | undefined;
   travelId: number = 0;
+  user: iUserRegistered | undefined;
+  userId!: number;
 
   constructor(
     private travelSvc: TravelService,
-    private route: ActivatedRoute){}
+    private authSvc: AuthService,
+    private route: ActivatedRoute,
+    private router: Router){}
 
   ngOnInit(){
     this.travelId = this.route.snapshot.params['id'];
     this.loadTravel();
+
+    this.authSvc.user$.subscribe(user => {
+      this.user = user || undefined;
+      if(user) this.userId = user.id
+    })
+
   }
 
   loadTravel() {
@@ -31,6 +43,11 @@ export class DetailsComponent {
         console.error('Error loading travel:', error);
       }
     });
+  }
+
+  purchaseTravel(travelId: number, userId: number){
+    this.travelSvc.purchaseTravel(travelId, userId).subscribe(data =>
+      this.router.navigate(['travels']))
   }
 
 }

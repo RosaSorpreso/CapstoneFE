@@ -81,6 +81,24 @@ export class TravelService {
       );
   }
 
+  purchaseTravel(travelId: number, userId: number): Observable<string> {
+    const options = {
+      responseType: 'text' as 'json'
+    };
+    return this.http.post<string>(`${environment.travelsUrl}/purchase/${travelId}`, userId, options)
+      .pipe(
+        catchError(error => {
+          if (error.status === 404) {
+            console.error('Travel not found:', error);
+          } else if (error.status === 400) {
+            console.error('Bad request:', error);
+          } else {
+            console.error('An unexpected error occurred:', error);
+          }
+          return throwError(error);
+        })
+      );
+  }
 
   deleteTravel(id: number): Observable<iTravelComplete[]> {
     return this.http.delete(`${environment.travelsUrl}/delete/${id}`, { responseType: 'text' })
