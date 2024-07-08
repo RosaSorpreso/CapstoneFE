@@ -6,7 +6,6 @@ import { iCategory } from '../../Models/i-category';
 import { ContinentService } from '../../services/continent.service';
 import { iContinent } from '../../Models/i-continent';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { iUserRegistered } from '../../Models/i-user-registered';
 import { iUserComplete } from '../../Models/i-user-complete';
@@ -82,8 +81,7 @@ export class TravelsComponent {
     private travelSvc: TravelService,
     private categorySvc: CategoryService,
     private continentSvc: ContinentService,
-    private authSvc: AuthService,
-    private router: Router
+    private authSvc: AuthService
   ){}
 
   ngOnInit(){

@@ -5,7 +5,7 @@
   <p>{{travel?.description}}</p>
   <p>{{travel?.price}}</p>
   <p>{{travel?.availableSeats}}</p>
-</div>
 
-<button *ngIf="user" (click)="purchaseTravel(travelId, userId)">purchase</button>
-<button *ngIf="user" (click)="addTravelToWishlist(travelId, userId)">wishlist</button>
+  <button *ngIf="user && travel" (click)="purchaseTravel(travelId, userId)">purchase</button>
+  <button *ngIf="user && travel" (click)="addTravelToWishlist(travelId, userId)">wishlist</button>
+</div>

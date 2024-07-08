@@ -37,12 +37,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/backoffice/edit/edit.module').then((m) => m.EditModule),
     canActivate: [AdminGuard],
-  },
-  {
-    path: 'details/:id',
-    loadChildren: () =>
-      import('./pages/details/details.module').then((m) => m.DetailsModule),
-  },
+  }
 ];
 
 @NgModule({

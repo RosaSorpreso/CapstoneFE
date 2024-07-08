@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { iTravelComplete } from '../../Models/i-travel-complete';
-import { TravelService } from '../../services/travel.service';
+import { iTravelComplete } from '../../../Models/i-travel-complete';
+import { TravelService } from '../../../services/travel.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { iUserRegistered } from '../../Models/i-user-registered';
+import { AuthService } from '../../../services/auth.service';
+import { iUserRegistered } from '../../../Models/i-user-registered';
 
 @Component({
   selector: 'app-details',

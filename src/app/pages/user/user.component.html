@@ -1,1 +1,11 @@
-<p>user works!</p>
+<div class="container">
+  <h1>Ciao {{userComplete?.firstName}}</h1>
+
+  <h3>I tuoi viaggi:</h3>
+  <div *ngFor="let travel of userComplete?.travelsPurchased">
+    <h4>{{travel.name}}</h4>
+    <p>{{travel.price}}</p>
+    <p>{{travel.category.name}}</p>
+    <p>{{travel.place}}</p>
+  </div>
+</div>
