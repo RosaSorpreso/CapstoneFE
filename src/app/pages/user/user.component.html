@@ -1,11 +1,42 @@
 <div class="container">
   <h1>Ciao {{userComplete?.firstName}}</h1>
 
-  <h3>I tuoi viaggi:</h3>
-  <div *ngFor="let travel of userComplete?.travelsPurchased">
-    <h4>{{travel.name}}</h4>
-    <p>{{travel.price}}</p>
-    <p>{{travel.category.name}}</p>
-    <p>{{travel.place}}</p>
+  <div *ngIf="user && user.roles[0].roleType == 'USER'">
+    <h3>I tuoi viaggi:</h3>
+    <div *ngFor="let travel of userComplete?.travelsPurchased">
+      <h4>{{travel.name}}</h4>
+      <p>{{travel.price}}</p>
+      <p>{{travel.category.name}}</p>
+      <p>{{travel.place}}</p>
+    </div>
   </div>
+
+  <div *ngIf="user && user.roles[0].roleType == 'ADMIN'">
+    <h3>categorie:</h3>
+    <div *ngFor="let category of categories">
+      <h4>{{category.name}}</h4>
+      <p>{{category.description}}</p>
+    </div>
+  </div>
+
+  <div ngbDropdown class="d-inline-block">
+    <button type="button" class="btn" id="dropdownBasic1" ngbDropdownToggle>
+      crea categoria
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+        <div>
+          <label>Name:</label>
+          <input formControlName="name" placeholder="Enter name">
+        </div>
+        <div>
+          <label>Description:</label>
+          <textarea formControlName="description" placeholder="Enter description"></textarea>
+        </div>
+        <button type="submit" [disabled]="categoryForm.invalid">Crea Categoria</button>
+      </form>
+
+    </div>
+  </div>
+
 </div>

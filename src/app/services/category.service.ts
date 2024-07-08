@@ -29,4 +29,14 @@ export class CategoryService {
       })
     );
   }
+
+  createCategory(category: Partial<iCategory>): Observable<iCategory> {
+    return this.http.post<iCategory>(environment.categoriesUrl, category)
+    .pipe(
+      catchError(error => {
+        console.error('Error create category:', error);
+        throw error;
+      })
+    );
+  }
 }
