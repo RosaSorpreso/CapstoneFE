@@ -6,6 +6,11 @@ import { iCategory } from '../../Models/i-category';
 import { ContinentService } from '../../services/continent.service';
 import { iContinent } from '../../Models/i-continent';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { iUserRegistered } from '../../Models/i-user-registered';
+import { iUserComplete } from '../../Models/i-user-complete';
+import { iTravelLight } from '../../Models/i-travel-light';
 
 @Component({
   selector: 'app-travels',
@@ -16,6 +21,9 @@ export class TravelsComponent {
 
   private modalService = inject(NgbModal);
 
+  user: iUserRegistered | undefined;
+  userComplete: iUserComplete | undefined;
+  userId!: number;
   travels: iTravelComplete[] = []
   categories: iCategory[] = []
   continents: iContinent[] = []
@@ -73,7 +81,9 @@ export class TravelsComponent {
   constructor(
     private travelSvc: TravelService,
     private categorySvc: CategoryService,
-    private continentSvc: ContinentService
+    private continentSvc: ContinentService,
+    private authSvc: AuthService,
+    private router: Router
   ){}
 
   ngOnInit(){
@@ -85,6 +95,16 @@ export class TravelsComponent {
 
     this.continentSvc.continent$.subscribe(continents => {
       this.continents = continents
+    })
+
+    this.authSvc.user$.subscribe(user => {
+      this.user = user || undefined;
+      if(user){
+        this.userId = user.id
+        this.authSvc.getUserById(this.userId).subscribe(user => {
+          this.userComplete = user
+        })
+      }
     })
   }
 
@@ -111,6 +131,21 @@ export class TravelsComponent {
     this.travelSvc.getTravelsByBoolean(type, boolean).subscribe(travels => {
       this.travels = travels
     })
+  }
+
+  addTravelToWishlist(travelId: number, userId: number){
+    this.travelSvc.addTravelToWishlist(travelId, userId).subscribe(() => {
+      const travel = this.travels.find(t => t.id === travelId);
+      if (travel) this.userComplete!.wishlist.push(travel);
+    })
+  }
+
+  isTravelInWishlist(travelId: number): boolean{
+    if(this.userComplete && this.userComplete.wishlist?.find((t: iTravelLight) => t.id === travelId)){
+      return true
+    } else {
+      return false
+    }
   }
 
   deleteTravel(id: number){

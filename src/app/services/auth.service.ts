@@ -61,6 +61,10 @@ export class AuthService {
     }))
   }
 
+  getUserById(id: number): Observable<iUserComplete>{
+    return this.http.get<iUserComplete>(`${environment.usersUrl}/${id}`)
+  }
+
 
   logout(){
 
