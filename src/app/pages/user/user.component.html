@@ -1,66 +1,93 @@
 <div class="container">
-  <h1>Ciao {{userComplete?.firstName}}</h1>
+  <h1>Ciao {{ userComplete?.firstName }}</h1>
 
   <div *ngIf="user && user.roles[0].roleType == 'USER'">
     <h3>I tuoi viaggi:</h3>
-    <div *ngFor="let travel of userComplete?.travelsPurchased">
-      <h4>{{travel.name}}</h4>
-      <p>{{travel.price}}</p>
-      <p>{{travel.category.name}}</p>
-      <p>{{travel.place}}</p>
-    </div>
+    <app-travel
+      *ngFor="let travel of userComplete?.travelsPurchased"
+      [travel]="travel"
+    >
+    </app-travel>
   </div>
 
   <div *ngIf="user && user.roles[0].roleType == 'ADMIN'">
     <h3>categorie:</h3>
     <div *ngFor="let category of categories">
-      <h4>{{category.name}}</h4>
-      <p>{{category.description}}</p>
-      <button (click)="openVerticallyCentered(content)"
-      class="btn btn-danger w-25">
-      <i class="bi bi-trash"></i>
-    </button>
+      <h4>{{ category.name }}</h4>
+      <p>{{ category.description }}</p>
+      <button
+        (click)="openVerticallyCentered(content)"
+        class="btn btn-danger w-25"
+      >
+        <i class="bi bi-trash"></i>
+      </button>
 
-    <ng-template #content let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-      </div>
-      <div class="modal-body">
-        <p>
-          <strong>Are you sure you want to delete <span class="text-primary">"John Doe"</span> profile?</strong>
-        </p>
-        <p>
-          All information associated to this user profile will be permanently deleted.
-          <span class="text-danger">This operation can not be undone.</span>
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
-        <button type="button" class="btn btn-danger" (click)="deleteCategory(category.id); modal.close('Ok click')">Ok</button>
-      </div>
-    </ng-template>
-  </div>
-  </div>
-
-  <div ngbDropdown class="d-inline-block">
-    <button type="button" class="btn" id="dropdownBasic1" ngbDropdownToggle>
-      crea categoria
-    </button>
-    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-      <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
-        <div>
-          <label>Name:</label>
-          <input formControlName="name" placeholder="Enter name">
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Modal title</h4>
+          <button
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+            (click)="modal.dismiss('Cross click')"
+          ></button>
         </div>
-        <div>
-          <label>Description:</label>
-          <textarea formControlName="description" placeholder="Enter description"></textarea>
+        <div class="modal-body">
+          <p>
+            <strong
+              >Are you sure you want to delete
+              <span class="text-primary">"John Doe"</span> profile?</strong
+            >
+          </p>
+          <p>
+            All information associated to this user profile will be permanently
+            deleted.
+            <span class="text-danger">This operation can not be undone.</span>
+          </p>
         </div>
-        <button type="submit" [disabled]="categoryForm.invalid">Crea Categoria</button>
-      </form>
-
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            (click)="modal.dismiss('cancel click')"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="deleteCategory(category.id); modal.close('Ok click')"
+          >
+            Ok
+          </button>
+        </div>
+      </ng-template>
     </div>
+
+    <div ngbDropdown class="d-inline-block">
+      <button type="button" class="btn" id="dropdownBasic1" ngbDropdownToggle>
+        crea categoria
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+          <div>
+            <label>Name:</label>
+            <input formControlName="name" placeholder="Enter name" />
+          </div>
+          <div>
+            <label>Description:</label>
+            <textarea
+              formControlName="description"
+              placeholder="Enter description"
+            ></textarea>
+          </div>
+          <button type="submit" [disabled]="categoryForm.invalid">
+            Crea Categoria
+          </button>
+        </form>
+      </div>
+    </div>
+
   </div>
 
 </div>
