@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, tap } from 'rxjs';
 import { iCategory } from '../Models/i-category';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
@@ -35,6 +35,22 @@ export class CategoryService {
     .pipe(
       catchError(error => {
         console.error('Error create category:', error);
+        throw error;
+      })
+    );
+  }
+
+  deleteCategoryById(id: number) {
+    return this.http.delete<string>(`${environment.categoriesUrl}/${id}`, { responseType: 'text' as 'json' })
+    .pipe(
+      tap(() => {
+        const currentCategories = this.categorySubject.getValue();
+        const updatedCategories = currentCategories.filter(c => c.id !== id);
+        this.categorySubject.next(updatedCategories);
+      }),
+      map(() => this.categorySubject.getValue()),
+      catchError(error => {
+        console.error('Error deleting category:', error);
         throw error;
       })
     );

@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef, inject } from '@angular/core';
 import { iUserComplete } from '../../Models/i-user-complete';
 import { AuthService } from '../../services/auth.service';
 import { iUserRegistered } from '../../Models/i-user-registered';
 import { CategoryService } from '../../services/category.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { iCategory } from '../../Models/i-category';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-user',
@@ -18,6 +19,7 @@ export class UserComponent {
   userId!: number;
   categoryForm: FormGroup;
   categories: iCategory[] = []
+  private modalService = inject(NgbModal);
 
   constructor(
     private authSvc: AuthService,
@@ -46,6 +48,10 @@ export class UserComponent {
     })
   }
 
+  openVerticallyCentered(content: TemplateRef<any>) {
+		this.modalService.open(content, { centered: true });
+	}
+
   onSubmit(): void {
     if (this.categoryForm.valid) {
       this.categorySvc.createCategory(this.categoryForm.value)
@@ -59,6 +65,12 @@ export class UserComponent {
         }
       });
     }
+  }
+
+  deleteCategory(id: number) {
+    this.categorySvc.deleteCategoryById(id).subscribe(updatedCategories => {
+      this.categories = updatedCategories
+    })
   }
 
 }
