@@ -131,25 +131,4 @@ export class TravelsComponent {
     })
   }
 
-  addTravelToWishlist(travelId: number, userId: number){
-    this.travelSvc.addTravelToWishlist(travelId, userId).subscribe(() => {
-      const travel = this.travels.find(t => t.id === travelId);
-      if (travel) this.userComplete!.wishlist.push(travel);
-    })
-  }
-
-  isTravelInWishlist(travelId: number): boolean{
-    if(this.userComplete && this.userComplete.wishlist?.find((t: iTravelLight) => t.id === travelId)){
-      return true
-    } else {
-      return false
-    }
-  }
-
-  deleteTravel(id: number){
-    this.travelSvc.deleteTravel(id).subscribe(updatedTravels => {
-      this.travels = updatedTravels
-    })
-  }
-
 }

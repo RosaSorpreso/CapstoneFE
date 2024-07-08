@@ -78,49 +78,6 @@
 
 
   <app-travel *ngFor="let travel of travels" [travel]="travel" class="card">
-    <div class="card-body">
-      <h5 class="card-title">{{travel?.name}}</h5>
-      <p class="card-text">{{travel?.description}}</p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">{{travel?.place}}</li>
-      <li class="list-group-item">{{travel?.price}}</li>
-      <li class="list-group-item">{{travel?.category?.name}}</li>
-    </ul>
-    <button *ngIf="user && user.roles[0].roleType == 'ADMIN'"
-    (click)="openVerticallyCentered(content)"
-    class="btn btn-danger w-25">
-      <i class="bi bi-trash"></i>
-    </button>
-    <button (click)="addTravelToWishlist(travel.id, userId)"
-    class="btn btn-light w-25">
-    <i [ngClass]="{'bi':true, 'bi-bookmark-heart' : !isTravelInWishlist(travel.id), 'bi-bookmark-heart-fill' : isTravelInWishlist(travel.id)}"></i>
-    </button>
-    <a *ngIf="user && user.roles[0].roleType == 'ADMIN'" [routerLink]="['/edit',travel.id]" class="btn btn-secondary w-25">
-      <i class="bi bi-pencil-square"></i>
-    </a>
-    <a [routerLink]="['/travels/details',travel.id]" class="btn btn-info w-25">
-      <i class="bi bi-info-circle-fill"></i>
-    </a>
-    <ng-template #content let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-      </div>
-      <div class="modal-body">
-        <p>
-          <strong>Are you sure you want to delete <span class="text-primary">"John Doe"</span> profile?</strong>
-        </p>
-        <p>
-          All information associated to this user profile will be permanently deleted.
-          <span class="text-danger">This operation can not be undone.</span>
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
-        <button type="button" class="btn btn-danger" (click)="deleteTravel(travel.id); modal.close('Ok click')">Ok</button>
-      </div>
-    </ng-template>
   </app-travel>
 </div>
 

@@ -111,6 +111,20 @@ export class TravelService {
       );
   }
 
+  removeTravelFromWishlist(travelId: number, userId: number): Observable<any> {
+    return this.http.post(`${environment.travelsUrl}/wishlist/remove/${travelId}`, userId, { responseType: 'text' as 'json' })
+    .pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          console.error('Travel or user not found:', error.message);
+        } else {
+          console.error('An unexpected error occurred:', error.message);
+        }
+        return throwError(error);
+      })
+    );
+  }
+
   deleteTravel(id: number): Observable<iTravelComplete[]> {
     return this.http.delete(`${environment.travelsUrl}/delete/${id}`, { responseType: 'text' })
       .pipe(
