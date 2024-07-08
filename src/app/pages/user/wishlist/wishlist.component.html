@@ -1,1 +1,9 @@
-<p>wishlist works!</p>
+<div class="container">
+  <h1>la tua wishlist:</h1>
+  <div *ngFor="let travel of userComplete?.wishlist">
+    <h4>{{travel.name}}</h4>
+    <p>{{travel.price}}</p>
+    <p>{{travel.category.name}}</p>
+    <p>{{travel.place}}</p>
+  </div>
+</div>
