@@ -50,4 +50,9 @@ export class DetailsComponent {
       this.router.navigate(['travels']))
   }
 
+  addTravelToWishlist(travelId: number, userId: number){
+    this.travelSvc.addTravelToWishlist(travelId, userId).subscribe(data =>
+      this.router.navigate(['travels']))
+  }
+
 }

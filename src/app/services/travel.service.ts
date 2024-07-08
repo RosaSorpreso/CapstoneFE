@@ -82,10 +82,7 @@ export class TravelService {
   }
 
   purchaseTravel(travelId: number, userId: number): Observable<string> {
-    const options = {
-      responseType: 'text' as 'json'
-    };
-    return this.http.post<string>(`${environment.travelsUrl}/purchase/${travelId}`, userId, options)
+    return this.http.post<string>(`${environment.travelsUrl}/purchase/${travelId}`, userId, { responseType: 'text' as 'json' })
       .pipe(
         catchError(error => {
           if (error.status === 404) {
@@ -94,6 +91,20 @@ export class TravelService {
             console.error('Bad request:', error);
           } else {
             console.error('An unexpected error occurred:', error);
+          }
+          return throwError(error);
+        })
+      );
+  }
+
+  addTravelToWishlist(travelId: number, userId: number): Observable<string> {
+    return this.http.post<string>(`${environment.travelsUrl}/wishlist/${travelId}`, userId, { responseType: 'text' as 'json' })
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 404) {
+            console.error('Travel or user not found:', error.message);
+          } else {
+            console.error('An unexpected error occurred:', error.message);
           }
           return throwError(error);
         })
