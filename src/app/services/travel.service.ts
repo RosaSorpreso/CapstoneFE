@@ -111,8 +111,8 @@ export class TravelService {
       );
   }
 
-  removeTravelFromWishlist(travelId: number, userId: number): Observable<any> {
-    return this.http.post(`${environment.travelsUrl}/wishlist/remove/${travelId}`, userId, { responseType: 'text' as 'json' })
+  removeTravelFromWishlist(travelId: number, userId: number): Observable<string> {
+    return this.http.post<string>(`${environment.travelsUrl}/wishlist/remove/${travelId}`, userId, { responseType: 'text' as 'json' })
     .pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 404) {

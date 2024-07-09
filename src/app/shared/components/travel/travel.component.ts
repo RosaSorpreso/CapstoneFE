@@ -57,7 +57,7 @@ export class TravelComponent {
 
   removeTravelFromWishlist(travelId: number, userId: number) {
     this.travelSvc.removeTravelFromWishlist(travelId, userId).subscribe(() => {
-      this.userComplete!.wishlist = this.userComplete!.wishlist.filter(t => t.id !== travelId);
+      if(this.userComplete) this.userComplete.wishlist = this.userComplete.wishlist.filter(t => t.id !== travelId);
     });
   }
 

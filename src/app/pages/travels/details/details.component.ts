@@ -1,9 +1,11 @@
+import { iTravelLight } from './../../../Models/i-travel-light';
 import { Component } from '@angular/core';
 import { iTravelComplete } from '../../../Models/i-travel-complete';
 import { TravelService } from '../../../services/travel.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { iUserRegistered } from '../../../Models/i-user-registered';
+import { iUserComplete } from '../../../Models/i-user-complete';
 
 @Component({
   selector: 'app-details',
@@ -16,6 +18,7 @@ export class DetailsComponent {
   travelId: number = 0;
   user: iUserRegistered | undefined;
   userId!: number;
+  userComplete: iUserComplete | undefined;
 
   constructor(
     private travelSvc: TravelService,
@@ -29,7 +32,12 @@ export class DetailsComponent {
 
     this.authSvc.user$.subscribe(user => {
       this.user = user || undefined;
-      if(user) this.userId = user.id
+      if(user){
+        this.userId = user.id
+        this.authSvc.getUserById(this.userId).subscribe(user => {
+          this.userComplete = user
+        })
+      }
     })
 
   }
@@ -51,8 +59,21 @@ export class DetailsComponent {
   }
 
   addTravelToWishlist(travelId: number, userId: number){
-    this.travelSvc.addTravelToWishlist(travelId, userId).subscribe(data =>
-      this.router.navigate(['travels']))
+    this.travelSvc.addTravelToWishlist(travelId, userId).subscribe()
+  }
+
+  isTravelInWishlist(travelId: number): boolean{
+    if(this.userComplete && this.userComplete.wishlist?.find((t: iTravelLight) => t.id === travelId)){
+      return true
+    } else {
+      return false
+    }
+  }
+
+  removeTravelFromWishlist(travelId: number, userId: number) {
+    this.travelSvc.removeTravelFromWishlist(travelId, userId).subscribe(() => {
+      if(this.userComplete) this.userComplete.wishlist = this.userComplete.wishlist.filter((t: iTravelLight) => t.id !== travelId);
+    });
   }
 
 }

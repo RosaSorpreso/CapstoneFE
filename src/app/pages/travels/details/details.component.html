@@ -7,5 +7,8 @@
   <p>{{travel?.availableSeats}}</p>
 
   <button *ngIf="user && travel" (click)="purchaseTravel(travelId, userId)">purchase</button>
-  <button *ngIf="user && travel" (click)="addTravelToWishlist(travelId, userId)">wishlist</button>
+  <button *ngIf="user && travel" (click)="isTravelInWishlist(travel.id) ? removeTravelFromWishlist(travel.id, userId) : addTravelToWishlist(travel.id, userId)"
+  class="btn btn-light w-25">
+  <i [ngClass]="{'bi':true, 'bi-bookmark-heart' : !isTravelInWishlist(travel.id), 'bi-bookmark-heart-fill' : isTravelInWishlist(travel.id)}"></i>
+  </button>
 </div>
