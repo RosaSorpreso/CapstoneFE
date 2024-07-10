@@ -44,6 +44,7 @@ export class TravelComponent {
   addTravelToWishlist(travelId: number, userId: number){
     this.travelSvc.addTravelToWishlist(travelId, userId).subscribe(() => {
       if (this.travel.id == travelId) this.userComplete!.wishlist.push(this.travel);
+
     })
   }
 

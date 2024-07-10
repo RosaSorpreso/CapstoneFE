@@ -4,7 +4,6 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
 import { iTravelComplete } from '../Models/i-travel-complete';
 import { iTravelRequest } from '../Models/i-travel-request';
-import { iTravelLight } from '../Models/i-travel-light';
 
 @Injectable({
   providedIn: 'root'
