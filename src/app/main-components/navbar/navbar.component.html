@@ -37,5 +37,43 @@
     </div>
 
     <a *ngIf="!user" routerLink="/auth/register" type="button" class="btn btn-warning">Sign-up</a>
+    <button *ngIf="!user" (click)="openVerticallyCentered(content) "type="button" class="btn btn-dark">login</button>
   </div>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Modal title</h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <form class="p-4 p-md-5 border rounded-3 bg-form">
+        <div class="form-floating mb-3">
+          <input [(ngModel)]="login.username"
+          type="text" class="form-control" name="email">
+          <label for="floatingInput">username</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input [(ngModel)]="login.password"
+          type="password" class="form-control" name="password">
+          <label for="floatingPassword">Password</label>
+        </div>
+        <hr class="my-4">
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        (click)="modal.dismiss('cancel click')"
+      >
+        Cancel
+      </button>
+      <button (click)="signIn(); modal.dismiss('Cross click')" type="button" class="btn btn-lg btn-primary">Accedi</button>
+    </div>
+  </ng-template>
 </nav>
