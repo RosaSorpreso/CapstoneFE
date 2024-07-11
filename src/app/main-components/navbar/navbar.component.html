@@ -1,21 +1,18 @@
-<nav class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-  <a routerLink="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-    <img src="https://res.cloudinary.com/diugj3eml/image/upload/v1720609335/logo_bolauq.png" alt="">
+<nav class=" bg-primary d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start py-2">
+  <a routerLink="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none border-end border-secondary">
+    <img src="https://res.cloudinary.com/diugj3eml/image/upload/v1720686969/logo-fotor-bg-remover-20240711103532_nhrm9e.png" alt="">
   </a>
 
-  <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-    <li><a routerLink="/" class="nav-link px-2">Home</a></li>
-    <li><a routerLink="/travels" class="nav-link px-2">Travels</a></li>
-    <li><a routerLink="/" class="nav-link px-2">Pricing</a></li>
-    <li><a routerLink="/" class="nav-link px-2">FAQs</a></li>
-    <li><a routerLink="/" class="nav-link px-2">About</a></li>
+  <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 ps-3">
+    <li><a routerLink="/" class="nav-link px-2 fw-bold fs-5 pe-3" [ngClass]="{'active': isThisPage('')}">Home</a></li>
+    <li><a routerLink="/travels" class="nav-link px-2 fw-bold fs-5 pe-3" [ngClass]="{'active': isThisPage('travels')}">Travels</a></li>
   </ul>
 
-  <div class="text-end">
+  <div class="text-end pe-4">
 
     <div *ngIf="user" ngbDropdown class="d-inline-block">
       <div class="d-block link-dark text-decoration-none" id="dropdownBasic1" ngbDropdownToggle>
-        <i class="bi bi-person-lines-fill"></i>
+        <i class="bi bi-person-circle fs-2 text-dark"></i>
       </div>
       <ul class="text-small shadow" ngbDropdownMenu aria-labelledby="dropdownBasic1">
         <li ngbDropdownItem>

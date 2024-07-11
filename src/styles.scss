@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
-$primary: #54AC9C;
+$primary: #00b9b9;
 $secondary: #FFDE59;
+$warning: #ff6b6b;
+$dark: #15434a;
 @import 'bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Candal&display=swap');
+body{
+  background-color: #f7fff7;
+}
 

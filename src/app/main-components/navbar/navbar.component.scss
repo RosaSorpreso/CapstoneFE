@@ -2,12 +2,35 @@ nav {
   background-color: #54AC9C;
 }
 
-.nav-link, .bi-person-lines-fill{
-  color: #FFDE59;
+.nav-link{
   font-size: 1.2rem;
+  font-family: "Candal", sans-serif;
+  color: #15434a;
+  transition: 0.2s;
+  &:hover{
+    color: #FFDE59;
+    transition: 0.2s;
+    transform: scale(1.1);
+  }
+}
+
+.active{
+  color: #FFDE59;
 }
 
 img{
-  width: 200px;
+  max-width: 220px;
   padding-left: 15px;
+}
+
+//removed arrow form dropdown
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em ;
+    border-right: 0.3em transparent;
+    border-bottom: 0;
+    border-left: 0.3em transparent;
 }

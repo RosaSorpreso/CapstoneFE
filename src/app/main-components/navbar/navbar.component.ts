@@ -41,4 +41,8 @@ export class NavbarComponent {
 		this.modalService.open(content, { centered: true });
 	}
 
+  isThisPage(page:string):boolean{
+    return this.router.url === `/${page}`
+  }
+
 }
