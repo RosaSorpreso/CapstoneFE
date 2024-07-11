@@ -24,7 +24,7 @@
 
       <ng-template #content let-modal>
         <div class="modal-header">
-          <h4 class="modal-title">Modal title</h4>
+          <h4 class="modal-title text-dark">Delete Category</h4>
           <button
             type="button"
             class="btn-close"
@@ -32,15 +32,15 @@
             (click)="modal.dismiss('Cross click')"
           ></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body text-dark">
           <p>
             <strong
-              >Are you sure you want to delete
-              <span class="text-primary">"John Doe"</span> profile?</strong
+              >Are you sure you want to delete category:
+              <span class="text-primary">{{category.name}}</span> ?</strong
             >
           </p>
           <p>
-            All information associated to this user profile will be permanently
+            All information associated to this category will be permanently
             deleted.
             <span class="text-danger">This operation can not be undone.</span>
           </p>
@@ -48,7 +48,7 @@
         <div class="modal-footer">
           <button
             type="button"
-            class="btn btn-outline-secondary"
+            class="btn btn-outline-dark"
             (click)="modal.dismiss('cancel click')"
           >
             Cancel
@@ -58,7 +58,7 @@
             class="btn btn-danger"
             (click)="deleteCategory(category.id); modal.close('Ok click')"
           >
-            Ok
+            DELETE
           </button>
         </div>
       </ng-template>
