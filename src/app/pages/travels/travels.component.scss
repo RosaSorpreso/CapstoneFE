@@ -1,0 +1,14 @@
+.dropdown-menu{
+  background-color: #f7fff7;
+  border-color: #15434a;
+}
+
+.dropdown-item{
+  &:hover{
+    background-color: #fbf6e2;
+  }
+}
+
+.candal{
+  font-family: "Candal", sans-serif;
+}
