@@ -21,14 +21,21 @@
         </li>
         <li ngbDropdownItem>
           <a *ngIf="user && user.roles[0].roleType == 'USER'"
-          class="dropdown-item" routerLink="/profile/wishlist">wishlist</a>
+          class="dropdown-item text-dark p-1" routerLink="/profile/wishlist">
+          <i class="bi bi-bookmark-heart-fill text-warning me-1"></i>
+          Wishlist</a>
         </li>
         <li ngbDropdownItem>
-          <a class="dropdown-item" routerLink="/profile">Profile</a>
+          <a class="dropdown-item text-dark p-1" routerLink="/profile">
+            <i class="bi bi-person-fill text-dark me-1"></i>
+            Profile</a>
         </li>
         <li><hr class="dropdown-divider"></li>
         <li ngbDropdownItem>
-          <button *ngIf="user" (click)="logout()">Logout</button>
+          <button *ngIf="user" (click)="logout()"
+          class="btn btn-dark me-2 text-secondary candal logout">
+          <i class="bi bi-box-arrow-left text-secondary"></i>
+          Logout</button>
         </li>
       </ul>
     </div>
@@ -38,38 +45,40 @@
   </div>
 
   <ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title text-dark">Welcome Back!</h4>
-      <button
-        type="button"
-        class="btn-close"
-        aria-label="Close"
-        (click)="modal.dismiss('Cross click')"
-      ></button>
-    </div>
-    <div class="modal-body">
-      <form class="p-4 p-md-5 border rounded-3 bg-form">
-        <div class="form-floating mb-3">
-          <input [(ngModel)]="login.username"
-          type="text" class="form-control" name="email">
-          <label for="floatingInput">username</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input [(ngModel)]="login.password"
-          type="password" class="form-control" name="password">
-          <label for="floatingPassword">Password</label>
-        </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button
-        type="button"
-        class="btn btn-outline-primary candal"
-        (click)="modal.dismiss('cancel click')"
-      >
-        Cancel
-      </button>
-      <button (click)="signIn(); modal.dismiss('Cross click')" type="button" class="btn btn-dark text-secondary candal">Login</button>
+    <div class="bg-light modal-border">
+      <div class="modal-header mx-2">
+        <h4 class="modal-title text-dark">Welcome Back!</h4>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="modal.dismiss('Cross click')"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form class="p-4">
+          <div class="form-floating mb-3">
+            <input [(ngModel)]="login.username"
+            type="text" class="form-control bg-light border-primary" name="email">
+            <label for="floatingInput" class=" text-dark">Username</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input [(ngModel)]="login.password"
+            type="password" class="form-control bg-light border-primary" name="password">
+            <label for="floatingPassword" class=" text-dark">Password</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-primary candal"
+          (click)="modal.dismiss('cancel click')"
+        >
+          Cancel
+        </button>
+        <button (click)="signIn(); modal.dismiss('Cross click')" type="button" class="btn btn-dark text-secondary candal">Sign-In</button>
+      </div>
     </div>
   </ng-template>
 </nav>
