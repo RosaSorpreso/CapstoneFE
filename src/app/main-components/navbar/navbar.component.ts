@@ -54,7 +54,7 @@ export class NavbarComponent {
   }
 
   signUp(){
-    this.authSvc.register(this.registerData).subscribe()
+    this.authSvc.loginUserAfterRegister(this.registerData)
   }
 
 }

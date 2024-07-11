@@ -60,6 +60,18 @@ export class AuthService {
     }))
   }
 
+  loginUserAfterRegister(user: iUserRegister) {
+    this.register(user).subscribe(
+      (res: AccessData) => {
+        this.login({ username: user.username, password: user.password }).subscribe(
+          (loginRes: AccessData) => {
+            localStorage.setItem('token', loginRes.token);
+          }
+        );
+      }
+    );
+  }
+
   getUserById(id: number): Observable<iUserComplete>{
     return this.http.get<iUserComplete>(`${environment.usersUrl}/${id}`)
   }
