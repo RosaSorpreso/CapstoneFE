@@ -2,20 +2,40 @@ nav {
   background-color: #54AC9C;
 }
 
+.candal{
+  font-family: "Candal", sans-serif;
+}
+
 .nav-link{
   font-size: 1.2rem;
   font-family: "Candal", sans-serif;
   color: #15434a;
-  transition: 0.2s;
   &:hover{
     color: #FFDE59;
-    transition: 0.2s;
-    transform: scale(1.1);
   }
 }
 
 .active{
   color: #FFDE59;
+}
+
+#dropdownBasic1, .nav-link{
+  transition: 0.4s;
+  transform: scale(1);
+  &:hover{
+    transition: 0.4s;
+    transform: scale(1.1);
+  }
+}
+
+.dropdown-menu{
+  background-color: #f7fff7;
+}
+
+.dropdown-item{
+  &:hover{
+    background-color: #fbf6e2;
+  }
 }
 
 img{
@@ -34,3 +54,5 @@ img{
     border-bottom: 0;
     border-left: 0.3em transparent;
 }
+
+

@@ -10,13 +10,13 @@
 
   <div class="text-end pe-4">
 
-    <div *ngIf="user" ngbDropdown class="d-inline-block">
-      <div class="d-block link-dark text-decoration-none" id="dropdownBasic1" ngbDropdownToggle>
-        <i class="bi bi-person-circle fs-2 text-dark"></i>
-      </div>
+    <div *ngIf="user" #dropdown="ngbDropdown"  ngbDropdown class="d-inline-block">
+      <a class="nav-link d-block text-decoration-none" id="dropdownBasic1" ngbDropdownToggle>
+        <i class="bi bi-person-circle fs-2" [class.active]="dropdown.isOpen()"></i>
+      </a>
       <ul class="text-small shadow" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <li ngbDropdownItem>
-          <a *ngIf="user && user.roles[0].roleType == 'ADMIN'"
+        <li ngbDropdownItem  *ngIf="user && user.roles[0].roleType == 'ADMIN'">
+          <a
           class="dropdown-item" routerLink="/create">Create</a>
         </li>
         <li ngbDropdownItem>
@@ -33,13 +33,13 @@
       </ul>
     </div>
 
-    <a *ngIf="!user" routerLink="/auth/register" type="button" class="btn btn-warning">Sign-up</a>
-    <button *ngIf="!user" (click)="openVerticallyCentered(content) "type="button" class="btn btn-dark">login</button>
+    <button *ngIf="!user" (click)="openVerticallyCentered(content) "type="button" class="btn btn-dark me-2 text-secondary candal">Login</button>
+    <button *ngIf="!user" routerLink="/auth/register" type="button" class="btn btn-secondary text-dark candal">Sign-up</button>
   </div>
 
   <ng-template #content let-modal>
     <div class="modal-header">
-      <h4 class="modal-title">Modal title</h4>
+      <h4 class="modal-title text-dark">Welcome Back!</h4>
       <button
         type="button"
         class="btn-close"
@@ -59,18 +59,17 @@
           type="password" class="form-control" name="password">
           <label for="floatingPassword">Password</label>
         </div>
-        <hr class="my-4">
       </form>
     </div>
     <div class="modal-footer">
       <button
         type="button"
-        class="btn btn-outline-secondary"
+        class="btn btn-outline-primary candal"
         (click)="modal.dismiss('cancel click')"
       >
         Cancel
       </button>
-      <button (click)="signIn(); modal.dismiss('Cross click')" type="button" class="btn btn-lg btn-primary">Accedi</button>
+      <button (click)="signIn(); modal.dismiss('Cross click')" type="button" class="btn btn-dark text-secondary candal">Login</button>
     </div>
   </ng-template>
 </nav>
