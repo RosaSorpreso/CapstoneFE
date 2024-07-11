@@ -17,10 +17,12 @@
       <ul class="text-small shadow" ngbDropdownMenu aria-labelledby="dropdownBasic1">
         <li ngbDropdownItem  *ngIf="user && user.roles[0].roleType == 'ADMIN'">
           <a
-          class="dropdown-item" routerLink="/create">Create</a>
+          class="dropdown-item text-dark p-1" routerLink="/create">
+          <i class="bi bi-cloud-plus text-dark me-1"></i>
+          Add New Travel</a>
         </li>
-        <li ngbDropdownItem>
-          <a *ngIf="user && user.roles[0].roleType == 'USER'"
+        <li ngbDropdownItem *ngIf="user && user.roles[0].roleType == 'USER'">
+          <a
           class="dropdown-item text-dark p-1" routerLink="/profile/wishlist">
           <i class="bi bi-bookmark-heart-fill text-warning me-1"></i>
           Wishlist</a>
