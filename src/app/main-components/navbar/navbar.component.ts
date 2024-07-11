@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { iLogin } from '../../Models/i-login';
+import { iUserRegister } from '../../Models/i-user-register';
 
 @Component({
   selector: 'app-navbar',
@@ -17,6 +18,13 @@ export class NavbarComponent {
   login: iLogin = {
     username: '',
     password: ''
+  }
+  registerData:iUserRegister = {
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    password: ""
   }
 
   constructor(
@@ -43,6 +51,10 @@ export class NavbarComponent {
 
   isThisPage(page:string):boolean{
     return this.router.url === `/${page}`
+  }
+
+  signUp(){
+    this.authSvc.register(this.registerData).subscribe()
   }
 
 }
