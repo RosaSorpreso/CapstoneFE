@@ -40,7 +40,7 @@ export class NavbarComponent {
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
     const navbar = document.getElementById('navbar');
-    if (window.scrollY > 70) {
+    if (window.scrollY > 30) {
       navbar?.classList.add('navbar-scrolled');
     } else {
       navbar?.classList.remove('navbar-scrolled');

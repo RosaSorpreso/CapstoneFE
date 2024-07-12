@@ -1,6 +1,30 @@
+.bg-custom{
+  background-color: #15434a;
+  opacity: 0.35;
+  width: auto;
+  height: 600px;
+}
+
 #bg-img{
   background-image: url(https://res.cloudinary.com/diugj3eml/image/upload/v1720792153/antigua_c6qzon.jpg);
   height: 600px;
   background-size: cover;
   background-position: center;
+  position: relative;
+
+}
+
+.div-on-top{
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  margin-top: 100px;
+  height: fit-content;
+  width: fit-content;
+  font-family: "Candal", sans-serif;
+  border-radius: 10px;
+  font-size: 3.5rem;
 }
