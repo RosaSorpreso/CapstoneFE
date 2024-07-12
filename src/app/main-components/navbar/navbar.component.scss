@@ -1,5 +1,13 @@
 nav {
-  background-color: #54AC9C;
+  transition: background-color 0.5s ease;
+  background-color: #00b9b9;
+  &.navbar-scrolled {
+    background-color: #00b9b9;
+  }
+}
+
+.trasparent{
+  background-color: transparent;
 }
 
 .candal{

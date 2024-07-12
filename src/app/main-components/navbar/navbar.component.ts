@@ -1,4 +1,4 @@
-import { Component, TemplateRef, inject } from '@angular/core';
+import { Component, HostListener, TemplateRef, inject } from '@angular/core';
 import { iUserRegistered } from '../../Models/i-user-registered';
 import { AuthService } from '../../services/auth.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -35,6 +35,16 @@ export class NavbarComponent {
     this.authSvc.user$.subscribe(user => {
       this.user = user || undefined;
     })
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 70) {
+      navbar?.classList.add('navbar-scrolled');
+    } else {
+      navbar?.classList.remove('navbar-scrolled');
+    }
   }
 
   logout(){
