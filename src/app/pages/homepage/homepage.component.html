@@ -10,21 +10,117 @@
   </p>
 </div>
 
-<div class="card-container text-center" *ngFor="let travel of travels | slice:0:3">
-  <a [routerLink]="['/travels/details', travel.id]">
-    <div class="card">
-      <div class="front-content">
-        <div class="overlay"></div>
-        <p>{{ travel.name }}</p>
-        <img [src]="travel.photos[0]" alt="">
-      </div>
-      <div class="content">
-        <p class="heading text-secondary">{{ travel.name }}</p>
-        <p>
-          {{ travel.description }}
-        </p>
+<div class="mb-5">
+
+  <div class="d-flex justify-content-center align-items-center gap-5 mt-5 pt-5">
+    <div class="d-flex flex-column align-items-start ps-4 me-5 border-primary border-start block">
+      <p class="text-dark fs-1 fw-bold">
+        ADVENTURES AWAITS!
+      </p>
+      <p class="text-dark fs-2">
+        Check Our Most Popular Destinations:
+      </p>
+    </div>
+    <div class="card-container text-center" *ngFor="let travel of travels | slice:0:3">
+      <a [routerLink]="['/travels/details', travel.id]">
+        <div class="card">
+          <div class="front-content">
+            <div class="overlay"></div>
+            <p>{{ travel.name }}</p>
+            <img [src]="travel.photos[0]" alt="">
+          </div>
+          <div class="content">
+            <p class="heading text-secondary">{{ travel.name }}</p>
+            <p>
+              {{ travel.description }}
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center align-items-center gap-5 mt-5 pt-5">
+    <div class="d-flex flex-column align-items-start ps-4 me-5 border-primary border-start block">
+      <p class="text-dark fs-1 fw-bold">
+        GET INSPIRED!
+      </p>
+      <p class="text-dark fs-2">
+        Discover Our Top Travel Categories:
+      </p>
+    </div>
+    <div class="card-container text-center" *ngFor="let category of categories | slice:0:3">
+        <div class="card">
+          <div class="front-content">
+            <p>{{ category.name }}</p>
+          </div>
+          <div class="content">
+            <p class="heading text-secondary">{{ category.name }}</p>
+            <p>
+              {{ category.description }}
+            </p>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center align-items-center gap-5 mt-5 pt-5">
+    <div class="d-flex flex-column align-items-start ps-4 me-5 border-primary border-start block">
+      <p class="text-dark fs-1 fw-bold">
+        <span class="text-secondary candal">TOGETHER</span>, WE EXPLORE!
+      </p>
+      <p class="text-dark fs-2">
+        Experience the Magic of Group Journeys:
+      </p>
+    </div>
+    <div class="card-container text-center">
+        <div class="card">
+          <div class="front-content">
+            <div class="overlay"></div>
+            <p>Who Will You Meet?</p>
+            <img src="https://res.cloudinary.com/diugj3eml/image/upload/v1720904784/traveling-with-friends-quotes-jpg_sj1qtm.webp" alt="">
+          </div>
+          <div class="content">
+            <p class="heading text-secondary">New Friends</p>
+            <p>
+              Connect with people, cultures, and stories. Start solo, return with lifelong friends
+            </p>
+          </div>
+        </div>
+    </div>
+    <div class="card-container text-center">
+      <div class="card">
+        <div class="front-content">
+          <div class="overlay"></div>
+          <p>Who Will Guide You?</p>
+          <img src="https://res.cloudinary.com/diugj3eml/image/upload/v1720904788/istockphoto-1431112826-612x612_ykmnfm.jpg" alt="">
+        </div>
+        <div class="content">
+          <p class="heading text-secondary">A Coordinator</p>
+          <p>
+            A passionate, trained coordinator will lead your group on new adventures, handling logistics for a smooth trip
+          </p>
+        </div>
       </div>
     </div>
-  </a>
+    <div class="card-container text-center">
+        <div class="card">
+          <div class="front-content">
+            <div class="overlay"></div>
+            <p>What Will Happen?</p>
+            <img src="https://res.cloudinary.com/diugj3eml/image/upload/v1720905087/large-group-of-happy-friends-in-mountains-area-royalty-free-image-1653422631_zjzqgh.jpg" alt="">
+          </div>
+          <div class="content">
+            <p class="heading text-secondary">New Friends</p>
+            <p>
+              Step out of your comfort zone and enjoy unique experiences. Be ready to discover new sides of yourself
+            </p>
+          </div>
+        </div>
+    </div>
+  </div>
+
 </div>
+
+
 

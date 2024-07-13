@@ -20,7 +20,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  margin: auto;
+  margin: 0 auto;
   margin-top: 100px;
   height: fit-content;
   width: fit-content;
@@ -46,13 +46,14 @@
   height: 100%;
   border-radius: inherit;
   position: relative;
+  background-color:#00b9b9;
 }
 
 .card .front-content {
   width: 100%;
   height: 100%;
   position: relative;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 0.9s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .card .front-content .overlay {
@@ -84,7 +85,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 0.9s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .card .content {
@@ -106,7 +107,7 @@
   border-radius: 5px;
   pointer-events: none;
   transform: translateX(96%);
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 0.9s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .card .content .heading {
@@ -124,4 +125,18 @@
 
 .card:hover .front-content p {
   opacity: 0;
+}
+
+.magic{
+  font-size: 3rem;
+  width: fit-content;
+  margin: 70px auto 100px auto;
+}
+
+.block{
+  width: 600px;
+}
+
+.candal{
+  font-family: "Candal", sans-serif;
 }
