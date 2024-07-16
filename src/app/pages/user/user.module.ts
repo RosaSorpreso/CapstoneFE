@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 
@@ -19,7 +19,8 @@ import { SharedModule } from '../../shared/shared.module';
     UserRoutingModule,
     NgbDropdownModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    NgbAccordionModule
   ]
 })
 export class UserModule { }
