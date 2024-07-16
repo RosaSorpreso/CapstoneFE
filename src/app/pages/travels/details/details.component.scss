@@ -1,0 +1,101 @@
+.div-img{
+  height: 600px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bg-custom{
+  background-color: #15434a;
+  opacity: 0.4;
+  width: auto;
+  height: 600px;
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.content{
+  position: absolute;
+  top: 100px;
+  bottom: 0;
+  margin-top: 100px;
+  height: fit-content;
+  width: fit-content;
+  border-radius: 10px;
+  font-size: 4rem;
+}
+
+.candal{
+  font-family: "Candal", sans-serif;
+}
+
+.btn-plane {
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.5s ease-in-out;
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  background: #FFDE59;
+  color:#15434a;
+  font-family: "Candal", sans-serif;
+}
+
+.btn-plane:hover {
+  box-shadow: 0 0 20px 0px #2e2e2e3a;
+}
+
+.btn-plane .icon {
+  position: absolute;
+  height: 40px;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+}
+
+.btn-plane .text {
+  transform: translateX(55px);
+}
+
+.btn-plane:hover .icon {
+  width: 175px;
+}
+
+.btn-plane:hover .text {
+  transition: all 0.5s;
+  opacity: 0;
+}
+
+.btn-plane:focus {
+  outline: none;
+}
+
+.btn-plane:active .icon {
+  transform: scale(0.85);
+}
+
+.details{
+  width: 800px;
+}
+
+.icon{
+  width: 50px;
+}
+
+.photos{
+  max-width: 350px;
+  border-radius: 10px;
+  box-shadow: 0 10px 15px 10px rgba(0, 0, 0, .08);
+}
+
+.banner{
+  border-radius: 10px;
+}

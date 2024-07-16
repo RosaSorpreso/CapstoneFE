@@ -19,7 +19,7 @@ export class HomepageComponent {
   ngOnInit(){
     this.getAllTravels()
 
-    this.categorySvc.category$.subscribe(categories => this.categories = categories)
+    this.categorySvc.category$.subscribe(categories => this.categories = this.shuffleArray(categories))
   }
 
   getAllTravels(){
@@ -28,7 +28,7 @@ export class HomepageComponent {
     })
   }
 
-  shuffleArray(array: iTravelComplete[]): iTravelComplete[] {
+  shuffleArray(array: any[]): any[] {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];

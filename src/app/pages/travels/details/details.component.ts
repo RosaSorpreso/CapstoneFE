@@ -14,7 +14,7 @@ import { iUserComplete } from '../../../Models/i-user-complete';
 })
 export class DetailsComponent {
 
-  travel: iTravelComplete | undefined;
+  travel!: iTravelComplete;
   travelId: number = 0;
   user: iUserRegistered | undefined;
   userId!: number;
