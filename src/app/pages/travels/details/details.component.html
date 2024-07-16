@@ -16,7 +16,7 @@
         <div class="d-flex align-items-center">
           <button
             *ngIf="user && travel && !travel.soldOut"
-            (click)="purchaseTravel(travelId, userId)"
+            (click)="openVerticallyCentered(content)"
             class="btn-plane"
           >
             <span class="icon">
@@ -108,7 +108,7 @@
           </div>
           <button
             *ngIf="user && travel && !travel.soldOut"
-            (click)="purchaseTravel(travelId, userId)"
+            (click)="openVerticallyCentered(content)"
             class="btn-plane"
           >
             <span class="icon">
@@ -135,3 +135,42 @@
     </div>
   </div>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title text-dark">Book Travel</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body text-dark">
+    <p>
+      <strong
+        >Are you sure you want to book
+        <span class="text-primary">{{travel.name}}</span> ?</strong
+      >
+    </p>
+    <p>
+      Your Journey is Just a Click Away!
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.dismiss('cancel click')"
+    >
+      Cancel
+    </button>
+    <button
+      type="button"
+      class="btn btn-lg btn-secondary text-dark candal"
+      (click)="purchaseTravel(travelId, userId); modal.close('Ok click')"
+    >
+      BOOK NOW
+    </button>
+  </div>
+</ng-template>

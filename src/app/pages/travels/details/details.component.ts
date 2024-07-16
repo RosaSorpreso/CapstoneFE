@@ -1,11 +1,12 @@
 import { iTravelLight } from './../../../Models/i-travel-light';
-import { Component } from '@angular/core';
+import { Component, TemplateRef, inject } from '@angular/core';
 import { iTravelComplete } from '../../../Models/i-travel-complete';
 import { TravelService } from '../../../services/travel.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { iUserRegistered } from '../../../Models/i-user-registered';
 import { iUserComplete } from '../../../Models/i-user-complete';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-details',
@@ -19,6 +20,7 @@ export class DetailsComponent {
   user: iUserRegistered | undefined;
   userId!: number;
   userComplete: iUserComplete | undefined;
+  private modalService = inject(NgbModal);
 
   constructor(
     private travelSvc: TravelService,
@@ -75,5 +77,9 @@ export class DetailsComponent {
       if(this.userComplete) this.userComplete.wishlist = this.userComplete.wishlist.filter((t: iTravelLight) => t.id !== travelId);
     });
   }
+
+  openVerticallyCentered(content: TemplateRef<any>) {
+		this.modalService.open(content, { centered: true });
+	}
 
 }
