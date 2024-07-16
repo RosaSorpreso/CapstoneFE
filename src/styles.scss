@@ -12,4 +12,28 @@ body{
   background-color: #f7fff7;
   font-family: "Cabin", sans-serif;;
 }
+html, body {
+  height: 100%;
+  margin: 0;
+}
 
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+.content {
+  flex: 1;
+}
+
+footer {
+
+  text-align: center;
+  padding: 1em;
+  position: relative;
+  width: 100%;
+  bottom: 0;
+}
