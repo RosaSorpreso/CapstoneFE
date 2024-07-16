@@ -15,7 +15,7 @@
         <p class="fs-1 text-light fw-bold">{{ travel.price | currency }}</p>
         <div class="d-flex align-items-center">
           <button
-            *ngIf="user && travel && !travel.soldOut"
+            *ngIf="user && travel && !travel.soldOut && user.roles[0].roleType == 'USER'"
             (click)="openVerticallyCentered(content)"
             class="btn-plane"
           >
@@ -38,6 +38,11 @@
           <p *ngIf="!user && travel" class="text-secondary fs-3 fw-bold">
             Log In to Book This Travel!
           </p>
+          <button *ngIf="user && travel && user.roles[0].roleType == 'ADMIN'"
+          class="btn btn-lg btn-dark text-light"
+          [routerLink]="['/edit', travel.id]">
+            Edit
+          </button>
           <button
             *ngIf="user && user.roles[0].roleType == 'USER' && !travel.soldOut"
             (click)="
@@ -97,7 +102,8 @@
           <p class="mb-0 fs-3">Day {{ item.key }} : {{ item.value }}</p>
         </div>
       </div>
-      <div class="bg-primary p-5 mt-4 d-flex flex-column align-items-center banner">
+      <div *ngIf="user && user.roles[0].roleType == 'USER'"
+      class="bg-primary p-5 mt-4 d-flex flex-column align-items-center banner">
         <p class="fs-1 candal text-secondary">What Are You Waiting For?</p>
         <div class="d-flex align-items-center gap-5">
           <div class="text-center">
@@ -127,6 +133,16 @@
             </span>
             <span class="text">Book Now</span>
           </button>
+        </div>
+      </div>
+      <div *ngIf="user && user.roles[0].roleType == 'ADMIN'">
+        <p class="fs-1 border-start border-primary ps-4 mb-5">Travelers:</p>
+        <div *ngIf="travel.travelers.length >= 1">
+          <p *ngFor="let user of travel.travelers"
+          class="text-dark fs-5 ps-4">Username: {{user.username}}, email: {{user.email}}</p>
+        </div>
+        <div *ngIf="travel.travelers.length == 0">
+          <p class="text-dark fs-5 ps-4">No one booked this travel yet</p>
         </div>
       </div>
     </div>
