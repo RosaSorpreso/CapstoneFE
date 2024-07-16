@@ -9,11 +9,13 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { AuthService } from './services/auth.service';
 import { NavbarComponent } from './main-components/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from './main-components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
