@@ -1,67 +1,75 @@
-<form [formGroup]="travelForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="name">Name</label>
-    <input id="name" formControlName="name" type="text">
-  </div>
-  <div>
-    <label for="description">Description</label>
-    <textarea id="description" formControlName="description"></textarea>
-  </div>
-  <div>
-    <label for="startDate">Start Date</label>
-    <input id="startDate" formControlName="startDate" type="date">
-  </div>
-  <div>
-    <label for="endDate">End Date</label>
-    <input id="endDate" formControlName="endDate" type="date">
-  </div>
-  <div>
-    <label for="availableSeats">Available Seats</label>
-    <input id="availableSeats" formControlName="availableSeats" type="number">
-  </div>
-  <div>
-    <label for="price">Price</label>
-    <input id="price" formControlName="price" type="number">
-  </div>
-  <div>
-    <label for="place">Place</label>
-    <input id="place" formControlName="place" type="text">
-  </div>
-  <div>
-    <label for="idContinent">Continent</label>
-    <input id="idContinent" formControlName="idContinent" type="number">
-  </div>
-  <div>
-    <label for="passportIsRequired">Passport Required</label>
-    <input id="passportIsRequired" formControlName="passportIsRequired" type="checkbox">
-  </div>
-  <div>
-    <label for="idCategories">Category</label>
-    <input id="idCategories" formControlName="idCategories" type="number">
-  </div>
-  <div>
-    <label for="whatsIncluded">What's Included</label>
-    <input id="whatsIncluded" formControlName="whatsIncluded" type="text">
-    <button type="button" (click)="addWhatsIncluded()">Add</button>
-    <ul>
-      <li *ngFor="let item of whatsIncludedArray; let i = index">
-        {{item}} <button type="button" (click)="removeWhatsIncluded(i)">Remove</button>
-      </li>
-    </ul>
-  </div>
-  <div>
-    <label for="itineraryKey">Itinerary Day</label>
-    <input id="itineraryKey" formControlName="itineraryKey" type="number">
-    <label for="itineraryValue">Itinerary Description</label>
-    <input id="itineraryValue" formControlName="itineraryValue" type="text">
-    <button type="button" (click)="addItinerary()">Add</button>
-    <ul>
-      <li *ngFor="let key of itineraryKeys()">
-        Day {{key}}: {{itineraryObject[key]}}
-        <button type="button" (click)="removeItinerary(key)">Remove</button>
-      </li>
-    </ul>
-  </div>
-  <button type="submit">Update Travel</button>
-</form>
-
+<div class="container my-5 py-5">
+  <h1 class="text-dark candal text-center mt-3">Update Travel</h1>
+  <form class="p-4" [formGroup]="travelForm" (ngSubmit)="onSubmit()">
+    <div class="form-floating mb-3">
+      <input id="name" formControlName="name" type="text" placeholder="name" class="form-control bg-light border-primary">
+      <label for="name" class="text-dark">Name</label>
+    </div>
+    <div class="form-floating mb-3">
+      <textarea id="description" formControlName="description" placeholder="description" class="form-control bg-light border-primary"></textarea>
+      <label for="description" class="text-dark">Description</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input id="startDate" formControlName="startDate" type="date" class="form-control bg-light border-primary">
+      <label for="startDate" class="text-dark">Start Date</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input id="endDate" formControlName="endDate" type="date" class="form-control bg-light border-primary">
+      <label for="endDate" class="text-dark">End Date</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input id="availableSeats" formControlName="availableSeats" type="number" class="form-control bg-light border-primary">
+      <label for="availableSeats" class="text-dark">Available Seats</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input id="price" formControlName="price" type="number" step="0.01" class="form-control bg-light border-primary">
+      <label for="price" class="text-dark">Price</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input id="place" formControlName="place" placeholder="Enter place" class="form-control bg-light border-primary">
+      <label for="place" class="text-dark">Place</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input id="idContinent" formControlName="idContinent" type="number" class="form-control bg-light border-primary">
+      <label for="idContinent" class="text-dark">Continent ID</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input id="idCategories" formControlName="idCategories" type="number" class="form-control bg-light border-primary">
+      <label for="idCategories" class="text-dark">Category ID</label>
+    </div>
+    <div class="mb-3">
+      <div class="d-flex align-items-center gap-3">
+        <label for="whatsIncluded" class="text-dark">What's Included:</label>
+        <input id="whatsIncluded" formControlName="whatsIncluded" placeholder="Enter included item" class="form-control bg-light border-primary w-50">
+        <button type="button" (click)="addWhatsIncluded()" class="btn btn-primary btn-sm">Add</button>
+      </div>
+      <ul class="list-group w-50">
+        <li class="list-group-item d-flex justify-content-between align-items-center bg-light" *ngFor="let item of whatsIncludedArray; let i = index">
+          {{ item }}
+          <button type="button" (click)="removeWhatsIncluded(i)" class="btn btn-danger btn-sm">Remove</button>
+        </li>
+      </ul>
+    </div>
+    <div class="mb-3">
+      <div class="d-flex align-items-center gap-3">
+        <label for="itineraryKey" class="text-dark">Itinerary:</label>
+        <div class="input-group">
+          <input id="itineraryKey" formControlName="itineraryKey" placeholder="Day number" class="form-control bg-light border-primary">
+          <input id="itineraryValue" formControlName="itineraryValue" placeholder="Itinerary description" class="form-control bg-light border-primary">
+        </div>
+        <button type="button" (click)="addItinerary()" class="btn btn-primary btn-sm">Add</button>
+      </div>
+      <ul class="list-group w-50">
+        <li class="list-group-item d-flex justify-content-between align-items-center bg-light" *ngFor="let key of itineraryKeys()">
+          Day {{ key }}: {{ itineraryObject[key] }}
+          <button type="button" (click)="removeItinerary(key)" class="btn btn-danger btn-sm">Remove</button>
+        </li>
+      </ul>
+    </div>
+    <div class="form-check mb-3">
+      <input type="checkbox" id="passportIsRequired" formControlName="passportIsRequired" class="form-check-input">
+      <label class="form-check-label" for="passportIsRequired">Passport Required</label>
+    </div>
+    <button type="submit" class="btn btn-secondary text-dark fw-bold">Submit</button>
+  </form>
+</div>
